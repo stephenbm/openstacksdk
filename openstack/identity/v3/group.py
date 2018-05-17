@@ -42,3 +42,19 @@ class Group(resource.Resource):
     domain_id = resource.Body('domain_id')
     #: Unique group name, within the owning domain. *Type: string*
     name = resource.Body('name')
+
+    def add_user(self, session, user):
+        """Add a user to the group"""
+        url = utils.urljoin(self.base_path, self.id, 'users', user.id)
+        resp = session.put(url,)
+        if resp.status_code == 204:
+            return True
+        return False
+
+    def remove_user(self, session, user):
+        """Remove a user from the group"""
+        url = utils.urljoin(self.base_path, self.id, 'users', user.id)
+        resp = session.delete(url,)
+        if resp.status_code == 204:
+            return True
+        return False
