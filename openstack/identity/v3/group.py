@@ -12,6 +12,7 @@
 
 from openstack.identity import identity_service
 from openstack import resource
+from openstack import utils
 
 
 class Group(resource.Resource):
